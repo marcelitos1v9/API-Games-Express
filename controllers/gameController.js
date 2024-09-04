@@ -58,24 +58,24 @@ const updateGame = async(req, res) => {
     res.status(500).json({ error: "Erro interno no servidor!"});
   }
 };
-//Listando um Único Jogo
 const getOneGame = async (req, res) => {
   try {
-    if(ObjectId.isValid(req.params.id)){
-      const id = req.params.id
-      const game = await gameService.getOne(id)
-      if(!game){
-        res.sendStatus(404) //Código 404 : NOT FOUND - Jogo não encontrado
+    if (ObjectId.isValid(req.params.id)) {
+      const id = req.params.id;
+      const game = await gameService.getOne(id);
+      if (!game) {
+        res.sendStatus(404); // Código 404: NOT FOUND - Jogo não encontrado
       } else {
-        res.Status(200).json({ game })
+        res.status(200).json({ game }); // Aqui o status está correto
       }
     } else {
-      res.sendStatus(400) //Código 400 (BAD REQUEST) - Requesição Inválida
+      res.sendStatus(400); // Código 400: BAD REQUEST - Requisição inválida
     }
   } catch (error) {
-    console.log(error)
-    res.status(500).json({ error: "Erro interno no servidor!"})
+    console.log(error);
+    res.status(500).json({ error: "Erro interno no servidor!" }); // Código 500: Internal Server Error
   }
-}
+};
+
 
 export default { getAllGames, createGame, deleteGame, updateGame, getOneGame};
