@@ -58,6 +58,7 @@ const updateGame = async(req, res) => {
     res.status(500).json({ error: "Erro interno no servidor!"});
   }
 };
+
 const getOneGame = async (req, res) => {
   try {
     if (ObjectId.isValid(req.params.id)) {
